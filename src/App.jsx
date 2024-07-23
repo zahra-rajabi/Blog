@@ -1,5 +1,7 @@
+import Layout from "./layout/Layout";
+
 function App() {
-  return <>blog</>;
+  return <Layout children={"hello"} />;
 }
 
 export default App;
