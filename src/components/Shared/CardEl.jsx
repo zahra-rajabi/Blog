@@ -47,7 +47,7 @@ function CardEl({ title, slug, coverPhoto, author }) {
       </CardContent>
       <Divider variant="middle" sx={{ margin: "10px" }} />
       <CardActions>
-        {/* <Link to={`/blogs/${slug}`} style={{ width: "100%" }}>
+        <Link to={`/blogs/${slug}`} style={{ width: "100%" }}>
           <Button
             variant="outlined"
             fullWidth
@@ -56,7 +56,7 @@ function CardEl({ title, slug, coverPhoto, author }) {
           >
             مطالعه مقاله
           </Button>
-        </Link> */}
+        </Link>
       </CardActions>
     </Card>
   );
