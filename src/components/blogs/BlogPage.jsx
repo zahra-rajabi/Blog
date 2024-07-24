@@ -11,6 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CommentForm from "../comments/CommentForm";
 
 function BlogPage() {
   const { slug } = useParams();
@@ -80,8 +81,14 @@ function BlogPage() {
             </Typography>
           </Box>
         </Grid>
-        <Grid item mt={9} xs={12}>
-          <div dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
+        <Grid item mt={9} xs={12} style={{ width: "60%", height: "60%" }}>
+          <div
+            dangerouslySetInnerHTML={{ __html: post.content.html }}
+            style={{ width: "100%", height: "100%" }}
+          ></div>
+        </Grid>
+        <Grid item xs={12}>
+          <CommentForm slug={slug} />
         </Grid>
       </Grid>
     </Container>
