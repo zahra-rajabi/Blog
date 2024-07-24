@@ -28,6 +28,9 @@ const getAuthors = gql`
       avatar {
         url
       }
+      post {
+        title
+      }
     }
   }
 `;
