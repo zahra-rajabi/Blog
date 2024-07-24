@@ -9,8 +9,6 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-
-import React from "react";
 import { Link } from "react-router-dom";
 
 function CardEl({ title, slug, coverPhoto, author }) {
@@ -21,14 +19,16 @@ function CardEl({ title, slug, coverPhoto, author }) {
         borderRadius: 4,
       }}
     >
-      <CardHeader
-        avatar={<Avatar src={author.avatar.url} sx={{ marginLeft: 2 }} />}
-        title={
-          <Typography component="p" variant="p" color="text.primary">
-            {author.name}
-          </Typography>
-        }
-      />
+      {author && (
+        <CardHeader
+          avatar={<Avatar src={author.avatar.url} sx={{ marginLeft: 2 }} />}
+          title={
+            <Typography component="p" variant="p" color="text.primary">
+              {author.name}
+            </Typography>
+          }
+        />
+      )}
       <CardMedia
         component="img"
         height="130"

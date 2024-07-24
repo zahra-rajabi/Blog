@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { getBlogsInfo } from "../../GraphQl/queries";
 import { Grid } from "@mui/material";
 import CardEl from "../Shared/CardEl";
+
 function Blogs() {
   const { loading, data, error } = useQuery(getBlogsInfo);
 
