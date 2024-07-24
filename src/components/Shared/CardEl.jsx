@@ -8,6 +8,7 @@ import {
   Divider,
   Typography,
   Button,
+  Container,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -17,34 +18,40 @@ function CardEl({ title, slug, coverPhoto, author }) {
       sx={{
         boxShadow: "rgba(0 , 0 , 0 , 0.1) 0 4px 12px",
         borderRadius: 4,
+        height: "60vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
       }}
     >
-      {author && (
-        <CardHeader
-          avatar={<Avatar src={author.avatar.url} sx={{ marginLeft: 2 }} />}
-          title={
-            <Typography component="p" variant="p" color="text.primary">
-              {author.name}
-            </Typography>
-          }
+      <div>
+        {author && (
+          <CardHeader
+            avatar={<Avatar src={author.avatar.url} sx={{ marginLeft: 2 }} />}
+            title={
+              <Typography component="p" variant="p" color="text.primary">
+                {author.name}
+              </Typography>
+            }
+          />
+        )}
+        <CardMedia
+          component="img"
+          height="130"
+          image={coverPhoto.url}
+          alt={slug}
         />
-      )}
-      <CardMedia
-        component="img"
-        height="130"
-        image={coverPhoto.url}
-        alt={slug}
-      />
-      <CardContent>
-        <Typography
-          component="h4"
-          variant="div"
-          fontWeight={600}
-          color="text.primary"
-        >
-          {title}
-        </Typography>
-      </CardContent>
+        <CardContent>
+          <Typography
+            component="h4"
+            variant="div"
+            fontWeight={600}
+            color="text.primary"
+          >
+            {title}
+          </Typography>
+        </CardContent>
+      </div>{" "}
       <Divider variant="middle" sx={{ margin: "10px" }} />
       <CardActions>
         <Link to={`/blogs/${slug}`} style={{ width: "100%" }}>

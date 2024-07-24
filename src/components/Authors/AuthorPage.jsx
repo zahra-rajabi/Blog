@@ -1,9 +1,9 @@
 import { useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getAuthorData } from "../../GraphQl/queries";
-import { Avatar, Container, Grid, Typography } from "@mui/material";
-import sanitizeHtml from "sanitize-html";
+import { Avatar, Container, Grid, Typography, Button } from "@mui/material";
 import CardEl from "../Shared/CardEl";
+import Loader from "../Shared/Loader";
 
 function AuthorPage() {
   const { slug } = useParams();
@@ -11,7 +11,7 @@ function AuthorPage() {
     variables: { slug: slug },
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader />;
   if (error) return <p>something went wrong...</p>;
 
   const { avatar, description, field, name, post } = data.author;
@@ -35,9 +35,17 @@ function AuthorPage() {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <div
-            dangerouslySetInnerHTML={{ __html: sanitizeHtml(description.html) }}
-          ></div>
+          <div dangerouslySetInnerHTML={{ __html: description.html }}></div>
+        </Grid>
+        <Grid item>
+          <Link
+            to="/authors"
+            style={{ textDecoration: "none", color: "#2A3D45" }}
+          >
+            <Button variant="outlined" sx={{ fontFamily: "YekanBakh" }}>
+              مشاهده سایر نویسندگان
+            </Button>
+          </Link>
         </Grid>
         <Grid item xs={12} mt={6}>
           <Typography component="h3" variant="h5" fontWeight={700} mb={2}>
