@@ -1,10 +1,40 @@
 import React, { useState } from "react";
 import { Button, Grid, TextField, Typography } from "@mui/material";
-
+import { useMutation } from "@apollo/client";
+import { SendComment } from "../../GraphQl/mutation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function CommentForm({ slug }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [content, setContent] = useState("");
+  const [text, setText] = useState("");
+  const [sendComment, { loading, data, error }] = useMutation(SendComment, {
+    variables: {
+      name,
+      email,
+      text,
+      slug,
+    },
+  });
+
+  const sendHandler = () => {
+    if (name && email && text) {
+      sendComment();
+      toast.success("کامنت ارسال شد ", {
+        position: "top-center",
+        theme: "dark",
+      });
+      setName("");
+      setEmail("");
+      setText("");
+    } else {
+      toast.error("تمام فیلد هارو پر کنید", {
+        position: "top-center",
+        theme: "dark",
+      });
+    }
+  };
+
   return (
     <Grid
       item
@@ -14,7 +44,7 @@ function CommentForm({ slug }) {
     >
       <Grid item m={2}>
         <Typography component="p" variant="h6" fontWeight={700} color="primary">
-          کامنت ها
+          ارسال کامنت
         </Typography>
       </Grid>
       <Grid item xs={12} m={2}>
@@ -44,13 +74,22 @@ function CommentForm({ slug }) {
           variant="outlined"
           fullWidth
           multiline
-          value={content}
+          value={text}
           minRows={4}
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e) => setText(e.target.value)}
         />
       </Grid>
       <Grid item m={2}>
-        <Button variant="contained">ارسال</Button>
+        {loading ? (
+          <Button variant="contained" disabled onClick={sendHandler}>
+            در حال ارسال...
+          </Button>
+        ) : (
+          <Button variant="contained" onClick={sendHandler}>
+            ارسال
+          </Button>
+        )}
+        <ToastContainer />
       </Grid>
     </Grid>
   );

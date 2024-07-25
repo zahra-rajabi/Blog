@@ -78,4 +78,16 @@ const getPost = gql`
     }
   }
 `;
-export { getBlogsInfo, getAuthors, getAuthorData, getPost };
+
+const getComments = gql`
+  query getComments($slug: String!) {
+    post(where: { slug: $slug }) {
+      comment {
+        name
+        id
+        text
+      }
+    }
+  }
+`;
+export { getBlogsInfo, getAuthors, getAuthorData, getPost, getComments };

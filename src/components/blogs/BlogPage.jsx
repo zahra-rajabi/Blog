@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CommentForm from "../comments/CommentForm";
+import Comments from "../comments/Comments";
 
 function BlogPage() {
   const { slug } = useParams();
@@ -89,6 +90,9 @@ function BlogPage() {
         </Grid>
         <Grid item xs={12}>
           <CommentForm slug={slug} />
+        </Grid>
+        <Grid item xs={12}>
+          <Comments slug={slug} />
         </Grid>
       </Grid>
     </Container>
