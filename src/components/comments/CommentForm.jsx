@@ -85,7 +85,11 @@ function CommentForm({ slug }) {
             در حال ارسال...
           </Button>
         ) : (
-          <Button variant="contained" onClick={sendHandler}>
+          <Button
+            variant="contained"
+            style={{ fontFamily: "inherit" }}
+            onClick={sendHandler}
+          >
             ارسال
           </Button>
         )}
