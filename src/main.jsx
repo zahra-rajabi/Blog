@@ -21,19 +21,19 @@ export default function ScrollToTop() {
 }
 
 const client = new ApolloClient({
-  uri: import.meta.env.VITE_GRAPHCMS_URI,
+  uri: "https://ap-northeast-1.cdn.hygraph.com/content/clytlf63j014g06w9dipua5zi/master",
   cache: new InMemoryCache(),
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-  <BrowserRouter>
-    <ApolloProvider client={client}>
-      <ThemeProvider theme={theme}>
-        <ScrollToTop />
-        <App />
-      </ThemeProvider>
-    </ApolloProvider>
-  </BrowserRouter>
+    <BrowserRouter>
+      <ApolloProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <ScrollToTop />
+          <App />
+        </ThemeProvider>
+      </ApolloProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
